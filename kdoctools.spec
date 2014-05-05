@@ -2,8 +2,9 @@
 
 Name: kdoctools
 Version: 4.98.0
-Release: 1
+Release: 2
 Source0: http://ftp5.gwdg.de/pub/linux/kde/unstable/frameworks/%{version}/%{name}-%{version}.tar.xz
+Patch0: kdoctools-4.98.0-DATA_INSTALL_DIR-is-absolute.patch
 Summary: Tools for handling KDE Frameworks 5 documentation
 URL: http://kde.org/
 License: LGPL v2.1
