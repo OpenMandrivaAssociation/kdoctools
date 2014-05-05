@@ -13,6 +13,8 @@ BuildRequires: cmake
 BuildRequires: cmake(KF5Archive)
 BuildRequires: extra-cmake-modules5
 BuildRequires: pkgconfig(Qt5Core)
+BuildRequires: docbook-style-xsl docbook-dtd45-xml
+Requires: docbook-style-xsl docbook-dtd45-xml
 
 %description
 Tools for handling KDE Frameworks 5 documentation
