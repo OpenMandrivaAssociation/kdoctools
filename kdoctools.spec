@@ -2,7 +2,7 @@
 
 Name: kdoctools
 Version: 4.98.0
-Release: 2
+Release: 3
 Source0: http://ftp5.gwdg.de/pub/linux/kde/unstable/frameworks/%{version}/%{name}-%{version}.tar.xz
 Patch0: kdoctools-4.98.0-DATA_INSTALL_DIR-is-absolute.patch
 Summary: Tools for handling KDE Frameworks 5 documentation
@@ -24,6 +24,9 @@ Tools for handling KDE Frameworks 5 documentation
 Summary: Development files for %{name}
 Group: Development/C
 Requires: %{name} = %{EVRD}
+Requires: extra-cmake-modules5
+Requires: pkgconfig(Qt5Core)
+Requires: cmake(KF5Archive)
 
 %description devel
 Development files (Headers etc.) for %{name}.
