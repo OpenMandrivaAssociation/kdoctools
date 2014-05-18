@@ -2,14 +2,14 @@
 
 Name: kdoctools
 Version: 4.99.0
-Release: 1
+Release: 2
 Source0: http://ftp5.gwdg.de/pub/linux/kde/unstable/frameworks/%{version}/%{name}-%{version}.tar.xz
 Summary: Tools for handling KDE Frameworks 5 documentation
 URL: http://kde.org/
 License: LGPL v2.1
 Group: System/Libraries
 BuildRequires: qmake5
-BuildRequires: cmake
+BuildRequires: cmake >= 2.8.12.2-5
 BuildRequires: cmake(KF5Archive)
 BuildRequires: extra-cmake-modules5
 BuildRequires: pkgconfig(Qt5Core)
@@ -32,14 +32,7 @@ Development files (Headers etc.) for %{name}.
 
 %prep
 %setup -q
-# FIXME at some point, we should figure out why %%cmake
-# doesn't work here.
-%setup_compile_flags
-mkdir build
-cd build
-cmake \
-	-DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} \
-	..
+%cmake
 
 %build
 %make -C build
