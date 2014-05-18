@@ -1,10 +1,9 @@
 %define major 5
 
 Name: kdoctools
-Version: 4.98.0
-Release: 3
+Version: 4.99.0
+Release: 1
 Source0: http://ftp5.gwdg.de/pub/linux/kde/unstable/frameworks/%{version}/%{name}-%{version}.tar.xz
-Patch0: kdoctools-4.98.0-DATA_INSTALL_DIR-is-absolute.patch
 Summary: Tools for handling KDE Frameworks 5 documentation
 URL: http://kde.org/
 License: LGPL v2.1
@@ -33,8 +32,14 @@ Development files (Headers etc.) for %{name}.
 
 %prep
 %setup -q
-%apply_patches
-%cmake
+# FIXME at some point, we should figure out why %%cmake
+# doesn't work here.
+%setup_compile_flags
+mkdir build
+cd build
+cmake \
+	-DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} \
+	..
 
 %build
 %make -C build
@@ -42,9 +47,18 @@ Development files (Headers etc.) for %{name}.
 %install
 %makeinstall_std -C build
 
-%files
+
+L="`pwd`/%{name}.lang"
+cd %{buildroot}
+for i in .%{_docdir}/HTML/*; do
+	LNG=`echo $i |cut -d/ -f6`
+	echo -n "%lang($LNG) " >>$L
+	echo $i |cut -b2- >>$L
+done
+
+%files -f %{name}.lang
 %{_bindir}/*
-%{_datadir}/kdoctools5
+%{_datadir}/kf5/kdoctools
 %{_mandir}/man1/*
 %{_mandir}/man7/*
 %{_mandir}/man8/*
