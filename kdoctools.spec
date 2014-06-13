@@ -2,7 +2,7 @@
 
 Name: kdoctools
 Version: 4.99.0
-Release: 2
+Release: 3
 Source0: http://ftp5.gwdg.de/pub/linux/kde/unstable/frameworks/%{version}/%{name}-%{version}.tar.xz
 Summary: Tools for handling KDE Frameworks 5 documentation
 URL: http://kde.org/
