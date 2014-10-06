@@ -11,6 +11,7 @@ Group: System/Libraries
 BuildRequires: qmake5
 BuildRequires: cmake >= 2.8.12.2-5
 BuildRequires: cmake(KF5Archive)
+BuildRequires: cmake(KF5I18n)
 BuildRequires: extra-cmake-modules5
 BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: docbook-style-xsl docbook-dtd45-xml
