@@ -1,7 +1,7 @@
 %define major 5
 
 Name: kdoctools
-Version: 5.2.0
+Version: 5.3.0
 Release: 1
 Source0: http://ftp5.gwdg.de/pub/linux/kde/stable/frameworks/%{version}/%{name}-%{version}.tar.xz
 Summary: Tools for handling KDE Frameworks 5 documentation
@@ -40,6 +40,7 @@ Development files (Headers etc.) for %{name}.
 %install
 %makeinstall_std -C build
 
+%find_lang kio_help5
 
 L="`pwd`/%{name}.lang"
 cd %{buildroot}
@@ -49,7 +50,7 @@ for i in .%{_docdir}/HTML/*; do
 	echo $i |cut -b2- >>$L
 done
 
-%files -f %{name}.lang
+%files -f %{name}.lang,kio_help5.lang
 %{_bindir}/*
 %{_datadir}/kf5/kdoctools
 %{_mandir}/man1/*
