@@ -3,7 +3,7 @@
 
 Name: kdoctools
 Version: 5.4.0
-Release: 2
+Release: 3
 Source0: http://ftp5.gwdg.de/pub/linux/kde/%{stable}/frameworks/%{version}/%{name}-%{version}.tar.xz
 Summary: Tools for handling KDE Frameworks 5 documentation
 URL: http://kde.org/
@@ -11,6 +11,7 @@ License: LGPL v2.1
 Group: System/Libraries
 BuildRequires: qmake5
 BuildRequires: cmake >= 2.8.12.2-5
+BuildRequires: ninja
 BuildRequires: cmake(KF5Archive)
 BuildRequires: cmake(KF5I18n)
 BuildRequires: extra-cmake-modules5
@@ -34,13 +35,14 @@ Development files (Headers etc.) for %{name}.
 
 %prep
 %setup -q
-%cmake
+%cmake -G Ninja \
+	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
 
 %build
-%make -C build
+ninja -C build
 
 %install
-%makeinstall_std -C build
+DESTDIR="%{buildroot}" ninja install -C build
 
 %find_lang kio_help5 || touch kio_help5.lang
 
