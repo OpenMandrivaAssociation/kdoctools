@@ -2,9 +2,9 @@
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 
 Name: kdoctools
-Version: 5.5.0
+Version: 5.6.0
 Release: 1
-Source0: http://ftp5.gwdg.de/pub/linux/kde/%{stable}/frameworks/%{version}/%{name}-%{version}.tar.xz
+Source0: http://ftp5.gwdg.de/pub/linux/kde/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: Tools for handling KDE Frameworks 5 documentation
 URL: http://kde.org/
 License: LGPL v2.1
@@ -60,13 +60,6 @@ done
 %{_mandir}/man1/*
 %{_mandir}/man7/*
 %{_mandir}/man8/*
-%lang(de) %{_mandir}/de/man?/*
-%lang(it) %{_mandir}/it/man?/*
-%lang(nl) %{_mandir}/nl/man?/*
-%lang(pt_BR) %{_mandir}/pt_BR/man?/*
-%lang(ru) %{_mandir}/ru/man?/*
-%lang(sv) %{_mandir}/sv/man?/*
-%lang(uk) %{_mandir}/uk/man?/*
 
 %files devel
 %{_includedir}/*
