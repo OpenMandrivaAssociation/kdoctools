@@ -45,6 +45,7 @@ ninja -C build
 DESTDIR="%{buildroot}" ninja install -C build
 
 %find_lang kio_help5 || touch kio_help5.lang
+%find_lang kdoctools5 || touch kdoctools5.lang
 
 L="`pwd`/%{name}.lang"
 cd %{buildroot}
@@ -54,12 +55,15 @@ for i in .%{_docdir}/HTML/*; do
 	echo $i |cut -b2- >>$L
 done
 
-%files -f %{name}.lang,kio_help5.lang
+%files -f %{name}.lang,kio_help5.lang,kdoctools5.lang
 %{_bindir}/*
 %{_datadir}/kf5/kdoctools
 %{_mandir}/man1/*
 %{_mandir}/man7/*
 %{_mandir}/man8/*
+%{_mandir}/*/man1/*
+%{_mandir}/*/man7/*
+%{_mandir}/*/man8/*
 
 %files devel
 %{_includedir}/*
