@@ -17,6 +17,8 @@ BuildRequires: cmake(KF5I18n)
 BuildRequires: extra-cmake-modules5
 BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: docbook-style-xsl docbook-dtd45-xml
+BuildRequires: pkgconfig(libxslt)
+BuildRequires: pkgconfig(libexslt)
 Requires: docbook-style-xsl docbook-dtd45-xml
 
 %description
