@@ -19,6 +19,7 @@ BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: docbook-style-xsl docbook-dtd45-xml
 BuildRequires: pkgconfig(libxslt)
 BuildRequires: pkgconfig(libexslt)
+BuildRequires: perl(URI::Escape)
 Requires: docbook-style-xsl docbook-dtd45-xml
 
 %description
