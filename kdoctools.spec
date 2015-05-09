@@ -27,7 +27,7 @@ Tools for handling KDE Frameworks 5 documentation.
 Summary: Development files for %{name}
 Group: Development/C
 Requires: %{name} = %{EVRD}
-Requires: extra-cmake-modules5
+Requires: cmake(ECM)
 Requires: pkgconfig(Qt5Core)
 Requires: cmake(KF5Archive)
 
