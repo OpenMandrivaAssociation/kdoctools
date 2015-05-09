@@ -4,23 +4,21 @@
 Name: kdoctools
 Version: 5.10.0
 Release: 1
-Source0: http://ftp5.gwdg.de/pub/linux/kde/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
+Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: Tools for handling KDE Frameworks 5 documentation
 URL: http://kde.org/
 License: LGPL v2.1
 Group: System/Libraries
-BuildRequires: qmake5
-BuildRequires: cmake >= 2.8.12.2-5
-BuildRequires: ninja
+BuildRequires: cmake(ECM)
 BuildRequires: cmake(KF5Archive)
 BuildRequires: cmake(KF5I18n)
-BuildRequires: extra-cmake-modules5
 BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: docbook-style-xsl docbook-dtd45-xml
 BuildRequires: pkgconfig(libxslt)
 BuildRequires: pkgconfig(libexslt)
 BuildRequires: perl(URI::Escape)
-Requires: docbook-style-xsl docbook-dtd45-xml
+Requires: docbook-style-xsl
+Requires: docbook-dtd45-xml
 
 %description
 Tools for handling KDE Frameworks 5 documentation.
@@ -38,14 +36,13 @@ Development files (Headers etc.) for %{name}.
 
 %prep
 %setup -q
-%cmake -G Ninja \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
+%cmake_kde5
 
 %build
-ninja -C build
+%ninja -C build
 
 %install
-DESTDIR="%{buildroot}" ninja install -C build
+%ninja_install -C build
 
 %find_lang kio_help5 || touch kio_help5.lang
 %find_lang kdoctools5 || touch kdoctools5.lang
