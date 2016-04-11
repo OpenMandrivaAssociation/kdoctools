@@ -61,6 +61,14 @@ done
 %{_mandir}/man1/*
 %{_mandir}/man7/*
 %{_mandir}/man8/*
+%lang(ca) %{_mandir}/ca/man?/*
+%lang(de) %{_mandir}/de/man?/*
+%lang(it) %{_mandir}/it/man?/*
+%lang(nl) %{_mandir}/nl/man?/*
+%lang(pt_BR) %{_mandir}/pt_BR/man?/*
+%lang(ru) %{_mandir}/ru/man?/*
+%lang(sv) %{_mandir}/sv/man?/*
+%lang(uk) %{_mandir}/uk/man?/*
 
 %files devel
 %{_includedir}/*
