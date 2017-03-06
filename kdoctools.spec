@@ -1,8 +1,11 @@
 %define major 5
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 
+%define lib %{mklibname KF5DocTools %{major}}
+%define devel %{mklibname -d KF5DocTools}
+
 Name: kdoctools
-Version:	5.31.0
+Version:	5.32.0
 Release:	1
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: Tools for handling KDE Frameworks 5 documentation
@@ -23,15 +26,23 @@ Requires: docbook-dtd45-xml
 %description
 Tools for handling KDE Frameworks 5 documentation.
 
-%package devel
+%package -n %{lib}
+Summary: The KDocTools library
+Group: System/Libraries
+
+%description -n %{lib}
+The KDocTools library
+
+%package -n %{devel}
 Summary: Development files for %{name}
 Group: Development/C
-Requires: %{name} = %{EVRD}
+Requires: %{lib} = %{EVRD}
 Requires: cmake(ECM)
 Requires: pkgconfig(Qt5Core)
 Requires: cmake(KF5Archive)
+%rename %{name}-devel
 
-%description devel
+%description -n %{devel}
 Development files (Headers etc.) for %{name}.
 
 %prep
@@ -71,7 +82,10 @@ done
 %lang(sv) %{_mandir}/sv/man?/*
 %lang(uk) %{_mandir}/uk/man?/*
 
-%files devel
+%files -n %{lib}
+%{_libdir}/libKF5DocTools.so.%{major}*
+
+%files -n %{devel}
 %{_includedir}/*
 %{_libdir}/cmake/KF5DocTools
-%{_libdir}/libKF5XsltKde.a
+%{_libdir}/libKF5DocTools.so
