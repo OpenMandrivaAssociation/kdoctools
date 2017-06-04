@@ -5,7 +5,7 @@
 %define develname %{mklibname -d KF5DocTools}
 
 Name: kdoctools
-Version:	5.34.0
+Version:	5.35.0
 Release:	1
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: Tools for handling KDE Frameworks 5 documentation
@@ -56,33 +56,14 @@ Development files (Headers etc.) for %{name}.
 %install
 %ninja_install -C build
 
-%find_lang kio_help5 || touch kio_help5.lang
-%find_lang kdoctools5 || touch kdoctools5.lang
+%find_lang %{name} --with-html --with-man --all-name
 
-L="`pwd`/%{name}.lang"
-cd %{buildroot}
-for i in .%{_docdir}/HTML/*; do
-	LNG=`echo $i |cut -d/ -f6`
-	echo -n "%lang($LNG) " >>$L
-	echo $i |cut -b2- >>$L
-done
-
-%files -f %{name}.lang,kio_help5.lang,kdoctools5.lang
+%files -f %{name}.lang
 %{_bindir}/*
 %{_datadir}/kf5/kdoctools
 %{_mandir}/man1/*
 %{_mandir}/man7/*
 %{_mandir}/man8/*
-%lang(ca) %{_mandir}/ca/man?/*
-%lang(de) %{_mandir}/de/man?/*
-%lang(es) %{_mandir}/es/man?/*
-%lang(it) %{_mandir}/it/man?/*
-%lang(nl) %{_mandir}/nl/man?/*
-%lang(pt) %{_mandir}/pt/man?/*
-%lang(pt_BR) %{_mandir}/pt_BR/man?/*
-%lang(ru) %{_mandir}/ru/man?/*
-%lang(sv) %{_mandir}/sv/man?/*
-%lang(uk) %{_mandir}/uk/man?/*
 
 %files -n %{libname}
 %{_libdir}/libKF5DocTools.so.%{major}*
