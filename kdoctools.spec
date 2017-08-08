@@ -5,7 +5,7 @@
 %define develname %{mklibname -d KF5DocTools}
 
 Name: kdoctools
-Version:	5.36.0
+Version:	5.37.0
 Release:	1
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: Tools for handling KDE Frameworks 5 documentation
@@ -63,7 +63,6 @@ Development files (Headers etc.) for %{name}.
 %{_datadir}/kf5/kdoctools
 %{_mandir}/man1/*
 %{_mandir}/man7/*
-%{_mandir}/man8/*
 
 %files -n %{libname}
 %{_libdir}/libKF5DocTools.so.%{major}*
