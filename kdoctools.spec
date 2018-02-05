@@ -5,7 +5,7 @@
 %define develname %{mklibname -d KF5DocTools}
 
 Name: kdoctools
-Version:	5.42.0
+Version:	5.43.0
 Release:	1
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: Tools for handling KDE Frameworks 5 documentation
