@@ -6,8 +6,9 @@
 
 Name: kdoctools
 Version:	5.56.0
-Release:	1
+Release:	2
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
+Patch0:		kdoctools-3dc6d5f32b07baf5f2344c667be590551b337350.patch
 Summary: Tools for handling KDE Frameworks 5 documentation
 URL: http://kde.org/
 License: LGPL v2.1
