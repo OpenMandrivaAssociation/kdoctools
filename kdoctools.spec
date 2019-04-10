@@ -5,10 +5,9 @@
 %define develname %{mklibname -d KF5DocTools}
 
 Name: kdoctools
-Version:	5.56.0
-Release:	4
+Version:	5.57.0
+Release:	1
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
-Patch0:		kdoctools-3dc6d5f32b07baf5f2344c667be590551b337350.patch
 Summary: Tools for handling KDE Frameworks 5 documentation
 URL: http://kde.org/
 License: LGPL v2.1
@@ -21,6 +20,8 @@ BuildRequires: docbook-style-xsl docbook-dtd45-xml
 BuildRequires: pkgconfig(libxslt)
 BuildRequires: pkgconfig(libexslt)
 BuildRequires: perl(URI::Escape)
+# For QCH format docs
+BuildRequires: qt5-assistant
 Requires: docbook-style-xsl
 Requires: docbook-dtd45-xml
 
@@ -47,6 +48,14 @@ Requires: cmake(KF5Archive)
 %description -n %{develname}
 Development files (Headers etc.) for %{name}.
 
+%package -n %{name}-devel-docs
+Summary: Developer documentation for %{name} for use with Qt Assistant
+Group: Documentation
+Suggests: %{develname} = %{EVRD}
+
+%description -n %{name}-devel-docs
+Developer documentation for %{name} for use with Qt Assistant
+
 %prep
 %autosetup -p1
 %cmake_kde5
@@ -72,3 +81,6 @@ Development files (Headers etc.) for %{name}.
 %{_includedir}/*
 %{_libdir}/cmake/KF5DocTools
 %{_libdir}/libKF5DocTools.so
+
+%files -n %{name}-devel-docs
+%{_docdir}/qt5/*.{tags,qch}
