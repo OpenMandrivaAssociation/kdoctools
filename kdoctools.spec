@@ -21,6 +21,7 @@ BuildRequires: pkgconfig(libxslt)
 BuildRequires: pkgconfig(libexslt)
 BuildRequires: perl(URI::Escape)
 # For QCH format docs
+BuildRequires: doxygen
 BuildRequires: qt5-assistant
 Requires: docbook-style-xsl
 Requires: docbook-dtd45-xml
