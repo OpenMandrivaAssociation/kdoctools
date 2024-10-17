@@ -9,7 +9,7 @@ Version:	5.116.0
 Release:	1
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: Tools for handling KDE Frameworks 5 documentation
-URL: http://kde.org/
+URL: https://kde.org/
 License: LGPL v2.1
 Group: System/Libraries
 BuildRequires: cmake(ECM)
