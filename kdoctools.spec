@@ -22,8 +22,10 @@ BuildRequires: docbook-style-xsl docbook-dtd45-xml
 BuildRequires: pkgconfig(libxslt)
 BuildRequires: pkgconfig(libexslt)
 BuildRequires: perl(URI::Escape)
-# The first configure still searches for Doxygen while BUILD_QCH is forced on.
+# The first configure still searches for Doxygen and qhelpgenerator
+# while BUILD_QCH is forced on. qhelpgenerator is next to qmake.
 BuildRequires: doxygen
+BuildRequires: qt5-assistant
 Requires: docbook-style-xsl
 Requires: docbook-dtd45-xml
 
