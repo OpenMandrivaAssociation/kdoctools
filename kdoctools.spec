@@ -22,9 +22,6 @@ BuildRequires: docbook-style-xsl docbook-dtd45-xml
 BuildRequires: pkgconfig(libxslt)
 BuildRequires: pkgconfig(libexslt)
 BuildRequires: perl(URI::Escape)
-# For QCH format docs
-BuildRequires: doxygen
-BuildRequires: qt5-assistant
 Requires: docbook-style-xsl
 Requires: docbook-dtd45-xml
 
@@ -51,25 +48,18 @@ Requires: cmake(KF5Archive)
 %description -n %{develname}
 Development files (Headers etc.) for %{name}.
 
-%package -n %{name}-devel-docs
-Summary: Developer documentation for %{name} for use with Qt Assistant
-Group: Documentation
-Suggests: %{develname} = %{EVRD}
-
-%description -n %{name}-devel-docs
-Developer documentation for %{name} for use with Qt Assistant
-
 %prep
 %autosetup -p1
 %cmake_kde5
 
 %build
+# Doxygen exits 0 when qhelpgenerator fails, and ninja does not notice the
+# missing qch. The KDE cmake macro forces BUILD_QCH on and takes no extra arguments.
+sed -i 's/^BUILD_QCH:BOOL=ON/BUILD_QCH:BOOL=OFF/' build/CMakeCache.txt
+cmake -S . -B build
 %ninja -C build
 
 %install
-# doxygen rewrites its config, so ninja install otherwise regenerates the
-# qch in parallel with the install and then cannot find the file.
-touch -c build/src/*.qch build/src/*.tags
 %ninja_install -C build
 
 %find_lang %{name} --with-html --with-man --all-name
@@ -87,6 +77,3 @@ touch -c build/src/*.qch build/src/*.tags
 %{_includedir}/*
 %{_libdir}/cmake/KF5DocTools
 %{_libdir}/libKF5DocTools.so
-
-%files -n %{name}-devel-docs
-%{_docdir}/qt5/*.{tags,qch}
