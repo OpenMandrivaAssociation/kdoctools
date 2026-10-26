@@ -67,6 +67,9 @@ Developer documentation for %{name} for use with Qt Assistant
 %ninja -C build
 
 %install
+# doxygen rewrites its config, so ninja install otherwise regenerates the
+# qch in parallel with the install and then cannot find the file.
+touch -c build/src/*.qch build/src/*.tags
 %ninja_install -C build
 
 %find_lang %{name} --with-html --with-man --all-name
