@@ -13,6 +13,8 @@ URL: https://kde.org/
 License: LGPL v2.1
 Group: System/Libraries
 BuildRequires: cmake(ECM)
+# KF6 extra-cmake-modules no longer defines the KF5 cmake helper.
+BuildRequires: extra-cmake-modules-plasma5
 BuildRequires: cmake(KF5Archive)
 BuildRequires: cmake(KF5I18n)
 BuildRequires: pkgconfig(Qt5Core)
